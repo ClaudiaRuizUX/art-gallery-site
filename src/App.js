@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import './styles/index.css'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchCats,fetchProjects} from "./actions/projectActions";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  componentDidMount() {
+    console.log(this.props);
+    this.props.fetchProjects();
+  }
+
+  render() {
+    console.log(this.props.catPics); // log will fire every time App renders
+    return (
+      <div className="App">
+        <h1>Abstract Art</h1>
+        {this.props.loading ?
+          <h1>LOADING...</h1> : 
+          <ol> {this.props.projects.map(project => <li>{project.title}</li>)} </ol>
+        } 
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    projects: state.projects,
+    loading: state.loading,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchProjects: () => dispatch(fetchProjects())
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
