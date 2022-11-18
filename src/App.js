@@ -1,5 +1,3 @@
-import './styles/index.css'
-import './styles/App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
@@ -8,6 +6,13 @@ import ProjectPage from './pages/ProjectPage';
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchProjects} from "./actions/projectActions";
+
+// styles
+import "./App.css";
+
+// fontawesome
+import initFontAwesome from "./utils/initFontAwesome";
+initFontAwesome();
 
 class App extends Component {
   componentDidMount() {
