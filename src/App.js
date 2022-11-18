@@ -1,16 +1,19 @@
+import React, { Component } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Container } from "reactstrap";
+
+import { connect } from "react-redux";
+import { fetchProjects} from "./actions/projectActions";
+
+import Loading from "./components/Loading";
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import ProjectPage from './pages/ProjectPage';
 
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { fetchProjects} from "./actions/projectActions";
+import { useAuth0 } from "@auth0/auth0-react";
 
-// styles
+// styles & fonts
 import "./App.css";
-
-// fontawesome
 import initFontAwesome from "./utils/initFontAwesome";
 initFontAwesome();
 
@@ -21,17 +24,16 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.catPics); // log will fire every time App renders
     return (
       <BrowserRouter>
-        <div className="App">
+        <div id="app" className="d-flex flex-column h-100">
           <NavBar />
-          <div id="page-body">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/projects" element={<ProjectPage />} />
-          </Routes>
-        </div>
+          <Container className="flex-grow-1 mt-5">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/projects" element={<ProjectPage />} />
+            </Routes>
+          </Container>
           <h1>Abstract Art</h1>
           {this.props.loading ?
             <h1>LOADING...</h1> : 
