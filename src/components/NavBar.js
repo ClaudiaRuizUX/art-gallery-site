@@ -37,27 +37,24 @@ import {
     return (
       <div className="nav-container">
         <Navbar bg="light" expand="lg" >
-          <Container >
+          <Container>
             <NavbarBrand className="logo" />
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
               <Nav className="mr-auto" navbar>
                 <NavItem>
                   <NavLink tag={RouterNavLink} to="/" exact activeClassName="router-link-exact-active">
-                    <a class="navbar-brand" href="/"><img src="../assets/logo-header.png" alt="ArtGallery"/></a>
+                    <a class="navbar-brand" href="/"><span>Art</span>Gallery</a>
                   </NavLink>
                 </NavItem>
               </Nav>
+              <Nav className="ml-auto justify-content-end" style={{ width: "100%" }} navbar>
               <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
-          <Nav className="mr-auto" navbar>
+              <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search"/>
+              <Button variant="outline-success">Search</Button>
+              </Form>
+              </Nav>
+          <Nav className="ml-auto justify-content-end" style={{ width: "100%" }} navbar>
           {!isAuthenticated && (
             <NavItem>
               <Button id="qsLoginBtn" color="primary" className="btn-margin"

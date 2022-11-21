@@ -33,7 +33,7 @@ class App extends Component {
               <Route path="/projects" element={<ProjectPage />} />
             </Routes>
           </Container>
-          <h1>Abstract Art</h1>
+          <h6>Abstract Art</h6>
           {/* {this.props.loading ?
             <h1>LOADING...</h1> : 
             <ol> {this.props.projects.map(project => <li>{project.title}</li>)} </ol>
