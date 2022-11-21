@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./App";
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from "redux";
@@ -11,8 +10,8 @@ import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from "@auth0/auth0-react";
 // import history from "./utils/history";
 import { getConfig } from "./config";
-
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./styles/index.css";
 
 
 const config = getConfig();

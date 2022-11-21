@@ -3,9 +3,12 @@ import React from 'react'
 const HomePage = () => {
     return (
         <div>
-            <h1>ArtGallery</h1>
+            <h1>h1. Bootstrap heading</h1>
+            <h2>h2. Bootstrap heading</h2>
+            <h3>ArtGallery</h3>
             <section>
             <h2>Abstract Art</h2>
+            <p>testing</p>
             <ul>
                 <li>All</li>
                 <li>Geometric</li>
@@ -13,7 +16,7 @@ const HomePage = () => {
                 <li>Warm</li>
                 <li>Gestural</li>
             </ul>
-            <div className="card-image">  
+            {/* <div className="card-image">  
                 <img src="/" alt="image" />
                 <p>Project Tile</p>
             </div>
@@ -24,7 +27,7 @@ const HomePage = () => {
             <div className="card-image">  
                 <img src="/" alt="image" />
                 <p>Project Tile</p>
-            </div>
+            </div> */}
             </section>
 
             <section>
@@ -36,7 +39,7 @@ const HomePage = () => {
                 <li>Animals</li>
                 <li>Water</li>
             </ul>
-            <div className="card-image">  
+            {/* <div className="card-image">  
                 <img src="/" alt="image" />
                 <p>Project Tile</p>
             </div>
@@ -47,7 +50,7 @@ const HomePage = () => {
             <div className="card-image">  
                 <img src="/" alt="image" />
                 <p>Project Tile</p>
-            </div>
+            </div> */}
             </section>
         </div>
     );

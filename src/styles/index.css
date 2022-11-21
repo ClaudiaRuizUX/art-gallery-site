@@ -1,0 +1,35 @@
+body {
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+p {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+
+.btn-primary {
+  --bs-btn-bg: #0212FE;
+
+  box-shadow: -1px 2px 7px -2px rgba(0,0,0,0.49);
+  -webkit-box-shadow: -1px 2px 7px -2px rgba(0,0,0,0.49);
+  -moz-box-shadow: -1px 2px 7px -2px rgba(0,0,0,0.49);
+
+  border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+
+  --bs-btn-padding-y: 0.42rem;
+  --bs-btn-padding-x: 1rem;
+}
+
+.navbar-brand>img {
+  max-height: 100%;
+  height: 100%;
+  width: auto;
+  margin: 0 auto;
+
+
+  /* probably not needed anymore, but doesn't hurt */
+  -o-object-fit: contain;
+  object-fit: contain; 
+
+}

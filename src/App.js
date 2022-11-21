@@ -13,14 +13,13 @@ import ProjectPage from './pages/ProjectPage';
 import { useAuth0 } from "@auth0/auth0-react";
 
 // styles & fonts
-import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import initFontAwesome from "./utils/initFontAwesome";
 initFontAwesome();
 
 class App extends Component {
   componentDidMount() {
-    console.log(this.props);
-    this.props.fetchProjects();
+    // this.props.fetchProjects();
   }
 
   render() {
@@ -35,10 +34,10 @@ class App extends Component {
             </Routes>
           </Container>
           <h1>Abstract Art</h1>
-          {this.props.loading ?
+          {/* {this.props.loading ?
             <h1>LOADING...</h1> : 
             <ol> {this.props.projects.map(project => <li>{project.title}</li>)} </ol>
-          } 
+          }  */}
         </div>
       </BrowserRouter>
     );
@@ -47,8 +46,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    projects: state.projects,
-    loading: state.loading,
+    // projects: state.projects,
+    // loading: state.loading,
   };
 };
 
