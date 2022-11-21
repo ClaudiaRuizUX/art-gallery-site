@@ -90,6 +90,7 @@ ul.pills {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-size: 0.85rem;
   padding-left:0;
+  margin-top: 1rem;
 }
 ul.pills li {
   display: inline-flex;
@@ -118,7 +119,7 @@ ul.pills li a:hover, ul.pills li a.active {
   border-radius: 0px;
 }
 section {
-  margin-top: 6em;
+  margin-top: 3em;
 }
 section.Branding-Center {
   text-align:center;

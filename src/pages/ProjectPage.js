@@ -13,6 +13,7 @@ const ProjectPage = () => {
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
             </p>
+            <img className="card-img-top mx-auto" src="https://via.placeholder.com/830x512" alt="830x512"/>
             <ul className="pills">
                 <li><a href="">Cold</a> <a href="">X</a></li>
                 <li><a href="">Cold</a></li>
