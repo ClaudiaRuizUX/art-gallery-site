@@ -7,9 +7,12 @@ import { blue } from '@material-ui/core/colors';
 const ProjectPage = () => {
     return (
     <div className="container col-md-8">
-        <div className="row my-5">
+        <div className="row">
         <Button className="layout-left" color="tertiary"> « Back </Button>
-            <h3>Project Title</h3>
+            <div className="title-container d-flex justify-content-between">
+                <h3>Project Title</h3>
+                <Button  color="secondary">✐ Edit Project </Button>
+            </div>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
             </p>

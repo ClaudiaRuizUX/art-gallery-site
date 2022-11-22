@@ -13,12 +13,10 @@ const HomePage = () => {
             <p className="slogan">Find Art by Themes or Styles</p>
             </section>
         
-            <section>
-            
-                <div>
-                    <h3 className="justify-content-end" >Abstract Art
-                    <Button  color="tertiary">✐ Edit Section </Button>
-                    </h3>
+            <section className="my-5">
+                <div className="d-flex justify-content-between"> 
+                    <h3>Abstract Art</h3>
+                    <Button  color="secondary">✐ Edit Section </Button>
                 </div>
                 <ul className="pills">
                     <li><a className="active" href="">All</a></li>
@@ -62,7 +60,10 @@ const HomePage = () => {
 
 
            <section>
-                <h3>Nature Artworks</h3>
+                <div className="d-flex justify-content-between">
+                    <h3>Nature Artworks</h3>
+                    <Button  color="secondary">✐ Edit Section </Button>
+                </div>
                 <ul className="pills">
                     <li><a className="active" href="">All</a></li>
                     <li><a href="">Geometric</a></li>

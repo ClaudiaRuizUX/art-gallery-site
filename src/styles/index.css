@@ -69,9 +69,7 @@ p.slogan {
   --bs-btn-padding-y: 0.42rem;
   --bs-btn-padding-x: 1rem;
 }
-.container .layout-left {
-  text-align: left;
-}
+
 
 
 /* NAVBAR ----------------------- */
@@ -109,6 +107,9 @@ ul.pills li a {
 ul.pills li a:hover, ul.pills li a.active {
   background-color: #E8F0FE;
   color:#0212FE;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
 }
 
 /* CARD & SECTIONS ----------------------- */
@@ -121,13 +122,27 @@ ul.pills li a:hover, ul.pills li a.active {
 section {
   margin-top: 3em;
 }
-section.Branding-Center {
-  text-align:center;
-  margin-bottom: 12em;
-}
 /* ADMIN ----------------------- */
 ul.pills li a + a {
   color: #202124;
   margin-left: -0.5rem;
 }
-/* ADMIN ----------------------- */
+
+/* LAYOUT & CONTAINERS ----------------------- */
+.layout-left {
+  text-align: left;
+}
+.layout-right {
+  text-align: right;
+}
+section.Branding-Center {
+  text-align:center;
+  margin-bottom: 12em;
+}
+.title-container  {
+  margin-bottom:1rem;
+  margin-top:1rem;
+}
+.Branding-Left {
+  padding-bottom: 2rem;
+}
