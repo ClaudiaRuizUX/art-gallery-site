@@ -49,7 +49,7 @@ import {
                 </NavItem>
               </Nav>
               <Nav className="ml-auto justify-content-end" style={{ width: "100%" }} navbar>
-              <Form className="d-flex">
+              <Form className="d-flex col-md-8">
               <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search"/>
               <Button variant="outline-success">Search</Button>
               </Form>

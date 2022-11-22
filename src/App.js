@@ -9,6 +9,7 @@ import Loading from "./components/Loading";
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import ProjectPage from './pages/ProjectPage';
+import EditProject from './pages/Modal/EditProject';
 
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -31,6 +32,7 @@ class App extends Component {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/projects" element={<ProjectPage />} />
+              <Route path="/editProject" element={<EditProject />} />
             </Routes>
           </Container>
           {/* {this.props.loading ?

@@ -68,6 +68,11 @@ p.slogan {
   color: #0212FE;
   --bs-btn-padding-y: 0.42rem;
   --bs-btn-padding-x: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.danger {
+  color: #F44336;
 }
 
 
