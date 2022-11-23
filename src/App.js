@@ -19,9 +19,6 @@ import initFontAwesome from "./utils/initFontAwesome";
 initFontAwesome();
 
 class App extends Component {
-  componentDidMount() {
-    // this.props.fetchProjects();
-  }
 
   render() {
     return (
@@ -35,26 +32,9 @@ class App extends Component {
               <Route path="/editProject" element={<EditProject />} />
             </Routes>
           </Container>
-          {/* {this.props.loading ?
-            <h1>LOADING...</h1> : 
-            <ol> {this.props.projects.map(project => <li>{project.title}</li>)} </ol>
-          }  */}
         </div>
       </BrowserRouter>
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    // projects: state.projects,
-    // loading: state.loading,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchProjects: () => dispatch(fetchProjects())
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
