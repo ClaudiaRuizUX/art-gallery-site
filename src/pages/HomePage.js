@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { connect } from "react-redux";
 import { fetchProjects} from "../actions/projectActions";
+import ProjectThumbs from '../components/ProjectThumbs';
+
 import { Button } from "reactstrap";
 import { ArrowRight } from 'react-bootstrap-icons';
 import { blue } from '@material-ui/core/colors';
@@ -13,13 +15,20 @@ class HomePage extends Component {
     
     render() {
         return (
-          <div className="App">
-            <h1>Art Projects</h1>
-            {this.props.loading ?
-              <h1>LOADING...</h1> : 
-              <ol> {this.props.projects.map(project => <li>{project.title}</li>)} </ol>
-            } 
-          </div>
+          <>
+            <div className="App">
+              <h1>Art Projects</h1>
+              {this.props.loading ?
+                <h1>LOADING...</h1> : 
+                <div className="col s8 cards-container">
+                  {this.props.projects.map((project =>
+                      <ProjectThumbs title={project.title} />
+                      ))
+                  }
+                </div>
+              } 
+            </div>
+          </>
         );
       }
 }
