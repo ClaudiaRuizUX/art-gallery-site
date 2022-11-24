@@ -127,6 +127,9 @@ ul.pills li a:hover, ul.pills li a.active {
 section {
   margin-top: 3em;
 }
+.card-img-top {
+  height:auto;
+}
 /* ADMIN ----------------------- */
 ul.pills li a + a {
   color: #202124;

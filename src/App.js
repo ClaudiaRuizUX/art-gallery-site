@@ -28,7 +28,8 @@ class App extends Component {
           <Container className="flex-grow-1 mt-5">
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/projects" element={<ProjectPage />} />
+              <Route exact path='/project/:id' element={<ProjectPage />} />
+              {/* <Route path="/project" element={<ProjectPage />} /> */}
               <Route path="/editProject" element={<EditProject />} />
             </Routes>
           </Container>

@@ -37,7 +37,11 @@ class HomePage extends Component {
                   {this.props.loading ?
                     <h1>LOADING...</h1> : 
                     <div className="row">  
-                      {this.props.projects.map((project => <ProjectThumbs title={project.title} image={project.image}/>))} 
+                      {this.props.projects.map(project => <ProjectThumbs
+                        title={project.title}
+                        image={project.image}
+                        id={project.id}
+                        />)} 
                     </div>
                   } 
 
