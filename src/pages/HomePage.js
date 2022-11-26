@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { connect } from "react-redux";
 import { fetchProjects} from "../actions/projectActions";
+import BASE_URL from "../BASE_URL"
 import ProjectThumbs from '../components/ProjectThumbs';
 // styles & fonts
 import { Button } from "reactstrap";
@@ -9,13 +10,25 @@ import { ArrowRight } from 'react-bootstrap-icons';
 import { blue } from '@material-ui/core/colors';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-class HomePage extends Component {
-    componentDidMount() {
-      this.props.fetchProjects();
-    }
-    render() {
-        return (
-          <>
+const HomePage = () =>
+{
+  const [projects, setProjects] = useState([]);
+  
+  useEffect(() =>
+  {
+    fetchProjects();
+  }, []);
+
+  function fetchProjects()
+  {
+    fetch(BASE_URL)
+      .then((res) => res.json())
+      .then((projects) =>
+      {
+        setProjects(projects);
+      });
+  }
+      return <>
           <section className="Branding-Left">
             <h1>Art<span>Gallery</span></h1>
             <p className="slogan">Find Art by Themes or Styles</p>
@@ -34,33 +47,21 @@ class HomePage extends Component {
                   <Button color="tertiary">+ Add Category</Button>
               </ul>
               <div className="container">
-                  {this.props.loading ?
-                    <h1>LOADING...</h1> : 
-                    <div className="row">  
-                      {this.props.projects.map(project => <ProjectThumbs
+                  <div className="row">  
+                    {projects.map(project =>
+                    <div className='col-md-4 py-3' key={project.id}>
+                      <ProjectThumbs
                         title={project.title}
                         image={project.image}
-                        id={project.id}
-                        />)} 
+                        id={project.id} >
+                      </ProjectThumbs>
                     </div>
-                  } 
+                    )}
+                 </div>
+            
 
               </div>
           </section>
-          </>
-        );
-      }
+        </>
 }
-const mapStateToProps = (state) => {
-    return {
-      projects: state.projects,
-      loading: state.loading,
-    };
-};
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchProjects: () => dispatch(fetchProjects())
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default HomePage
