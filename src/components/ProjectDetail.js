@@ -1,20 +1,37 @@
-import React from 'react';
+import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
 import { Button } from "reactstrap";
-import { useAuth0 } from "@auth0/auth0-react";
-import { ArrowRight } from 'react-bootstrap-icons';
-import { blue } from '@material-ui/core/colors';
+import BASE_URL from '../BASE_URL';
 
-const ProjectDetail = (props) => {
-    const { title, image, description, id} = props;
+const ProjectDetail = () => 
+{   
+    const location = useLocation()
+    const id = Number(location.pathname.split("/")[2])
+    const [project, setProject] = useState([])
+    const getProject = async () =>
+    {
+        fetch(`${BASE_URL}/${id}`)
+        .then((res) => res.json())
+        .then(data =>
+        {
+            setProject(data)
+        })
+    }
+
+    useEffect(() =>
+    {
+        getProject()
+    }, [])
+    
     return (
         <div className="row">
         <Button className="layout-left" color="tertiary"> « Back </Button>
             <div className="title-container d-flex justify-content-between">
-                <h3>{title}</h3>
+                <h3>{project.title}</h3>
                 <Button  color="secondary">✐ Edit Project </Button>
             </div>
-            <p>{description}</p>
-            <img className="card-img-top mx-auto" src={image} alt="830x512"/>
+            <p>{project.description}</p>
+            <img className="card-img-top mx-auto" src={project.image} alt="830x512"/>
             <ul className="pills">
                 <li><a href="">Cold</a> <a href="">X</a></li>
                 <li><a href="">Cold</a></li>
@@ -24,4 +41,4 @@ const ProjectDetail = (props) => {
         </div>
     );
 }
-export default ProjectDetail;
+export default ProjectDetail

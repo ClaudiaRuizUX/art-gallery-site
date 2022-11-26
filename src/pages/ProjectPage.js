@@ -17,12 +17,12 @@ class ProjectPage extends Component {
                 {this.props.loading ?
                 <h1>LOADING...</h1> : 
                 <div className="container col-md-8">  
-                    {this.props.projects.map(project => <ProjectDetail
-                    title={project.title}
-                    description={project.description}
-                    image={project.image}
-                    id={project.id}
-                    />)} 
+                    <ProjectDetail
+                    title={this.props.title}
+                    description={this.props.description}
+                    image={this.props.image}
+                    id={this.props.id}
+                    />
                 </div>
                 } 
             </div>

@@ -10,15 +10,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const ProjectThumbs = (props) => {
     const { title, image, id} = props;
     return (
-        <div className='col-md-4 py-3'>  
-            <div className="card">
-                <Link to={`/projects/${id}`}>
-                    <img className="card-img-top mx-auto" src={image} alt="350x350"/>
-                    <div className="card-body">
-                        <h5 className="card-title text-center">{title}</h5>
-                    </div>
-                </Link>
-            </div>
+        <div className="card">
+            <Link to={`/projects/${id}`}>
+                <img className="card-img-top mx-auto" src={image} alt="350x350"/>
+                <div className="card-body">
+                    <h5 className="card-title text-center">{title}</h5>
+                </div>
+            </Link>
         </div>
     );    
 };  
