@@ -29,8 +29,7 @@ class App extends Component {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route exact path='/projects/:id' element={<ProjectPage />} />
-              {/* <Route path="/project" element={<ProjectPage />} /> */}
-              <Route path="/editProject" element={<EditProject />} />
+              <Route exact path='/projects/:id/edit' element={<EditProject />} />
             </Routes>
           </Container>
         </div>
