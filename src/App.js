@@ -29,7 +29,7 @@ class App extends Component {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route exact path='/projects/:id' element={<ProjectPage />} />
-              <Route exact path='/projects/:id/edit' element={<EditProject />} />
+              <Route exact path='/projects/:id/edit' element={<EditProject id={this.props.id} />} />
             </Routes>
           </Container>
         </div>

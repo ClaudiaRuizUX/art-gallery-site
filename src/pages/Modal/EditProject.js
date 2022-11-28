@@ -1,37 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import Modal from 'react-modal';
-import { Container, Row, Col } from 'react-bootstrap';
-import { useAuth0 } from "@auth0/auth0-react";
+import { useLocation, Link } from "react-router-dom";
 import {Button} from "reactstrap";
 import Form from 'react-bootstrap/Form';
-import { Link } from "react-router-dom";
 
-function EditProject() {
-    const [ProjectsData, setProjectsData] = useState([]);
+const EditProject = () => 
+{   
+    const location = useLocation()
+    const id = Number(location.pathname.split("/")[2])
+    const [project, setProject] = useState([])
+    const getProject = async () =>
+    {
+        fetch(`https://desolate-depths-34005.herokuapp.com/projects/${id}`)
+        .then((res) => res.json())
+        .then(data =>
+        {
+            setProject(data)
+        })
+    }
 
-    useEffect(() => {
-        axios
-          .get("https://desolate-depths-34005.herokuapp.com/projects/")
-          .then((response) => setProjectsData(response.data));
-      }, []);
-
-    const setData = (data) => {
-    let { id, title, description, image } = data;
-    localStorage.setItem("id", id);
-    localStorage.setItem("Title", title);
-    localStorage.setItem("Description", description);
-    localStorage.setItem("Image", image);
-    };
-
-    const getData = () => {
-        axios
-          .get("https://desolate-depths-34005.herokuapp.com/projects/")
-          .then((getData) => {
-            setProjectsData(getData.data);
-          });
-      };
-
+    useEffect(() =>
+    {
+        getProject()
+    }, [])
 
 return (
     <div className="container col-md-8">
@@ -43,7 +34,7 @@ return (
                 aria-label="Text"
                 type="text"
                 placeholder="Project Title"
-                defaultValue={ProjectsData.title}
+                defaultValue={project.title}
             />
             <Button  type="submit" className="danger" color="tertiary" variant="outline-success">Remove</Button>
             <Button  type="submit" color="tertiary" variant="outline-success">Cancel</Button>
@@ -54,7 +45,7 @@ return (
             <Form.Control
                 as="textarea"
                 rows={4}
-                placeholder={ProjectsData.description}
+                placeholder={project.description}
             />
             </Form.Group> 
         </Form>
@@ -71,5 +62,5 @@ return (
         </div>
     </div>
     );
-  };
-export default EditProject;
+  }
+export default EditProject

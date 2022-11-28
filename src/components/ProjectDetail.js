@@ -17,7 +17,7 @@ const ProjectDetail = () =>
             setProject(data)
         })
     }
-
+    
     useEffect(() =>
     {
         getProject()
