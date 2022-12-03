@@ -9,7 +9,7 @@ import Loading from "./components/Loading";
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import ProjectPage from './pages/ProjectPage';
-import EditProject from './pages/Modal/EditProject';
+import EditProject from './pages/EditProject';
 
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -28,8 +28,8 @@ class App extends Component {
           <Container className="flex-grow-1 mt-5">
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route exact path='/projects/:id' element={<ProjectPage />} />
-              <Route exact path='/projects/:id/edit' element={<EditProject id={this.props.id} />} />
+              <Route exact path='/project' element={<ProjectPage />} />
+              <Route exact path='projects/edit' element={<EditProject />} />
             </Routes>
           </Container>
         </div>

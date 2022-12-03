@@ -1,30 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
-import {Button} from "reactstrap";
+import { Button } from "reactstrap";
 import Form from 'react-bootstrap/Form';
+import { useNavigate} from "react-router";
 
-const EditProject = () => 
-{   
-    const location = useLocation()
-    const id = Number(location.pathname.split("/")[2])
-    const [project, setProject] = useState([])
-    const getProject = async () =>
-    {
-        fetch(`https://desolate-depths-34005.herokuapp.com/projects/${id}`)
-        .then((res) => res.json())
-        .then(data =>
-        {
-            setProject(data)
-        })
-    }
+function EditProject () {
+    const navigate = useNavigate();
 
-    useEffect(() =>
-    {
-        getProject()
-    }, [])
+    const [id, setId] = useState(false);
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
 
-return (
+    useEffect(() => {
+        setId(localStorage.getItem("ID"));
+        setTitle(localStorage.getItem("TITLE"));
+        setDescription(localStorage.getItem("DESCRIPTION"));
+    }, []);
+
+    const postData = () => {
+    axios.get("https://desolate-depths-34005.herokuapp.com/projects");
+    setId("");
+    setTitle("");
+    setDescription("");
+    };
+
+    const updateAPIData = () => {
+        axios
+          .put(`https://desolate-depths-34005.herokuapp.com/projects/${id}`, {
+            id,
+            title,
+            description
+          })
+          .then(() => {
+            navigate("/projects/edit");
+          });
+      };
+
+    return (
     <div className="container col-md-8">
         <h3>Edit Project</h3>
         <Form>
@@ -34,7 +47,8 @@ return (
                 aria-label="Text"
                 type="text"
                 placeholder="Project Title"
-                defaultValue={project.title}
+                defaultValue={title}
+                onChange={(e) => setTitle(e.target.value)}
             />
             <Button  type="submit" className="danger" color="tertiary" variant="outline-success">Remove</Button>
             <Button  type="submit" color="tertiary" variant="outline-success">Cancel</Button>
@@ -45,7 +59,8 @@ return (
             <Form.Control
                 as="textarea"
                 rows={4}
-                placeholder={project.description}
+                placeholder={description}
+                onChange={(e) => setDescription(e.target.value)}
             />
             </Form.Group> 
         </Form>
@@ -61,6 +76,7 @@ return (
         <Button  type="submit" color="primary" variant="outline-success">Save</Button>
         </div>
     </div>
-    );
+    );  
   }
-export default EditProject
+
+export default EditProject;
