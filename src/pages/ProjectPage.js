@@ -33,6 +33,9 @@ function ProjectPage() {
         <h1>LOADING...</h1> : 
         <div className="container col-md-8">  
             <div className="row">
+            <Link to={"/"}>
+                <Button className="layout-left" color="tertiary"> « Back </Button>
+            </Link>
                 <div className="title-container d-flex justify-content-between">
                     <h3>{title}</h3>
                     <Link to={`/projects/edit`}>
