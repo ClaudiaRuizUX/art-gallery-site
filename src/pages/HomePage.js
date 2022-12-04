@@ -16,12 +16,19 @@ function HomePage () {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
-  
+
+  const [APISectionData, setAPISectionData] = useState([]);
 
   useEffect(() => {
       axios
         .get("https://desolate-depths-34005.herokuapp.com/projects/")
         .then((response) => setAPIData(response.data));
+    }, []);
+
+    useEffect(() => {
+      axios
+        .get("https://desolate-depths-34005.herokuapp.com/categories/")
+        .then((response) => setAPISectionData(response.data));
     }, []);
 
     const setProjectData = (data) => {
@@ -77,9 +84,15 @@ function HomePage () {
                   } 
               </div>
             </>
-            );
+          );
           })}
-
+          {APISectionData.map((data) => {
+            return (
+              <>
+              <div>{data.id}</div>
+              </>
+          );
+          })}
     </section>
   </>
 );
