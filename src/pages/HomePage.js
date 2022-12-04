@@ -46,6 +46,16 @@ function HomePage () {
           setAPIData(getProjectData.data);
         });
     };
+    const arr1 = [];
+    const allCategories = [...new Set(APISectionData.map((data) => {
+      
+        if (arr1.indexOf(data.name) === -1) {
+          arr1.push(data.name)
+        }
+      })
+    )];
+
+
   return (
   <>
     <section className="Branding-Left">
@@ -86,13 +96,12 @@ function HomePage () {
             </>
           );
           })}
-          {APISectionData.map((data) => {
-            return (
-              <>
-              <div>{data.id}</div>
-              </>
-          );
-          })}
+          
+          <div>{console.log(arr1)}</div>
+
+
+
+
     </section>
   </>
 );
