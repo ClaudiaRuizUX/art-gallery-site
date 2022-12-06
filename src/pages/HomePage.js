@@ -17,7 +17,7 @@ function HomePage () {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
 
-  const [APISectionData, setAPISectionData] = useState([]);
+  const [APICategoryData, setAPICategoryData] = useState([]);
 
   useEffect(() => {
       axios
@@ -28,7 +28,7 @@ function HomePage () {
     useEffect(() => {
       axios
         .get("https://desolate-depths-34005.herokuapp.com/categories/")
-        .then((response) => setAPISectionData(response.data));
+        .then((response) => setAPICategoryData(response.data));
     }, []);
 
     const setProjectData = (data) => {
@@ -46,14 +46,26 @@ function HomePage () {
           setAPIData(getProjectData.data);
         });
     };
-    const arr1 = [];
-    const allCategories = [...new Set(APISectionData.map((data) => {
-      
-        if (arr1.indexOf(data.name) === -1) {
-          arr1.push(data.name)
+
+    const sectionsArray = [];
+    const removeSectionDuplicates = [...new Set(APICategoryData.map((data) => {  
+        if (sectionsArray.indexOf(data.section.name) === -1) {
+          sectionsArray.push(data.section.name);
         }
       })
     )];
+
+    const categoriesArray = [];
+    const removeCategoriesDuplicates = [...new Set(APICategoryData.map((data) => {  
+        sectionsArray.forEach((sectionName) => {
+        if ((data.section.name) === sectionName) {
+          if (categoriesArray.indexOf(data.name) === -1) {
+            categoriesArray.push(data.name);
+          }
+        }
+      })   
+    })
+  )];
 
 
   return (
@@ -80,28 +92,25 @@ function HomePage () {
             <>
               <div className='col-md-4 py-3' key={data.id}>
                   {data.loading ?
-                  <h1>LOADING...</h1> : 
-                  <div className="container col-md-8">  
-                    <div className="card" onClick={() => setProjectData(data)}>
-                    <Link to={'/project'}>
-                      <img className="card-img-top mx-auto" src={data.image} alt="350x350"/>
-                      <div className="card-body">
-                      <h5 className="card-title text-center">{data.title}</h5>
+                    <h1>LOADING...</h1> : 
+                    <div className="container col-md-8">  
+                      <div className="card" onClick={() => setProjectData(data)}>
+                      <Link to={'/project'}>
+                        <img className="card-img-top mx-auto" src={data.image} alt="350x350"/>
+                        <div className="card-body">
+                        <h5 className="card-title text-center">{data.title}</h5>
+                        </div>
+                      </Link>
                       </div>
-                    </Link>
                     </div>
-                  </div>
-                  } 
+                  }    
               </div>
             </>
           );
           })}
-          
-          <div>{console.log(arr1)}</div>
 
-
-
-
+          <div>{sectionsArray}</div>
+          <div>{categoriesArray}</div>
     </section>
   </>
 );
