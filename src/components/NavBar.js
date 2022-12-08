@@ -3,6 +3,7 @@ import React, { Component, useState }  from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Form from 'react-bootstrap/Form';
+
 import {
     Collapse,
     Container,
@@ -49,10 +50,6 @@ import {
                 </NavItem>
               </Nav>
               <Nav className="ml-auto justify-content-end" style={{ width: "100%" }} navbar>
-              <Form className="d-flex col-md-8">
-              <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search"/>
-              <Button variant="outline-success">Search</Button>
-              </Form>
               </Nav>
           <Nav className="ml-auto justify-content-end" style={{ width: "100%" }} navbar>
           {!isAuthenticated && (

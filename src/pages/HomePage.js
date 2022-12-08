@@ -5,30 +5,25 @@ import { fetchProjects} from "../actions/projectActions";
 import axios from "axios";
 import { useNavigate} from "react-router";
 import { Link } from "react-router-dom";
-import ProjectThumbs from '../components/ProjectThumbs';
+import ProjectCollection from '../components/ProjectCollection';
+import Search from '../components/Search';
 import { Button } from "reactstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function HomePage () {
   const navigate = useNavigate();
-  const [APIData, setAPIData] = useState([]);
   const [id, setId] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [searchTerm, setSearchTermState] = useState("");
 
-  const [APICategoryData, setAPICategoryData] = useState([]);
+  const [APIData, setAPIData] = useState([]);
 
   useEffect(() => {
       axios
         .get("https://desolate-depths-34005.herokuapp.com/projects/")
         .then((response) => setAPIData(response.data));
-    }, []);
-
-    useEffect(() => {
-      axios
-        .get("https://desolate-depths-34005.herokuapp.com/categories/")
-        .then((response) => setAPICategoryData(response.data));
     }, []);
 
     const setProjectData = (data) => {
@@ -47,72 +42,28 @@ function HomePage () {
         });
     };
 
-    const sectionsArray = [];
-    const removeSectionDuplicates = [...new Set(APICategoryData.map((data) => {  
-        if (sectionsArray.indexOf(data.section.name) === -1) {
-          sectionsArray.push(data.section.name);
-        }
-      })
-    )];
+    const onProjectSearch = (event) => {
+      setSearchTermState({ searchTerm: event.target.value })
+    }
 
-    const categoriesArray = [];
-    const removeCategoriesDuplicates = [...new Set(APICategoryData.map((data) => {  
-        sectionsArray.forEach((sectionName) => {
-        if ((data.section.name) === sectionName) {
-          if (categoriesArray.indexOf(data.name) === -1) {
-            categoriesArray.push(data.name);
-          }
-        }
-      })   
-    })
-  )];
-
-
-  return (
-  <>
-    <section className="Branding-Left">
-      <h1>Art<span>Gallery</span></h1>
-      <p className="slogan">Find Art by Themes or Styles</p>
-    </section>
-    <section className="my-5">
-    <div className="d-flex justify-content-between"> 
-          <h3>Abstract Art</h3>
-          <Button  color="secondary">✐ Edit Section </Button>
+    {APIData.filter(project => project.title.includes(searchTerm)).map((project) => {
+      return (
+        <>
+      <div className='col-md-4 py-3' key={project.id}>
+      {project.loading ?
+      <h1>LOADING...</h1> : 
+        <div className="container col-md-8">  
+          <div className="card" onClick={() => setProjectData(project)}>
+          <Search onProjectSearch={onProjectSearch} />
+          <ProjectCollection project={project} />
+          </div>
+        </div>
+      }    
       </div>
-      <ul className="pills">
-          <li><a className="active" href="">All</a></li>
-          <li><a href="">Geometric</a> <a href="">X</a></li>
-          <li><a href="">Cold</a></li>
-          <li><a href="">Warm</a></li>
-          <li><a href="">Gestural</a></li>
-          <Button color="tertiary">+ Add Category</Button>
-      </ul>
-          {APIData.map((data) => {
-          return (
-            <>
-              <div className='col-md-4 py-3' key={data.id}>
-                  {data.loading ?
-                    <h1>LOADING...</h1> : 
-                    <div className="container col-md-8">  
-                      <div className="card" onClick={() => setProjectData(data)}>
-                      <Link to={'/project'}>
-                        <img className="card-img-top mx-auto" src={data.image} alt="350x350"/>
-                        <div className="card-body">
-                        <h5 className="card-title text-center">{data.title}</h5>
-                        </div>
-                      </Link>
-                      </div>
-                    </div>
-                  }    
-              </div>
-            </>
-          );
-          })}
-
-          <div>{sectionsArray}</div>
-          <div>{categoriesArray}</div>
-    </section>
-  </>
-);
+        </>
+      );
+      })}
 }
 export default HomePage;
+
+  
