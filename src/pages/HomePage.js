@@ -42,13 +42,13 @@ function HomePage () {
         });
     };
 
-    const onProjectSearch = (event) => {
-      setSearchTermState({ searchTerm: event.target.value })
+    const handleSearchChange = (event) => {
+      setSearchTermState( event.target.value );
     }
 
     return (
     <div>
-      <Search onProjectSearch={onProjectSearch} />
+      <Search onChange={handleSearchChange} />
       {APIData.filter(project => project.title.includes(searchTerm)).map((project) => {
       return (
         <>
