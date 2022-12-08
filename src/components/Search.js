@@ -5,7 +5,7 @@ import { Button } from "reactstrap";
 const Search = props => {
     return (
         <Form className="d-flex col-md-8">
-		<Form.Control
+		<input
             type="search"
             placeholder="Search"
             className="me-2"

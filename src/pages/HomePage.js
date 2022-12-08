@@ -5,10 +5,10 @@ import { fetchProjects} from "../actions/projectActions";
 import axios from "axios";
 import { useNavigate} from "react-router";
 import { Link } from "react-router-dom";
-import ProjectCollection from '../components/ProjectCollection';
 import Search from '../components/Search';
 import { Button } from "reactstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ProjectCard from '../components/ProjectCard'
 
 function HomePage () {
   const navigate = useNavigate();
@@ -46,7 +46,10 @@ function HomePage () {
       setSearchTermState({ searchTerm: event.target.value })
     }
 
-    {APIData.filter(project => project.title.includes(searchTerm)).map((project) => {
+    return (
+    <div>
+      <Search onProjectSearch={onProjectSearch} />
+      {APIData.filter(project => project.title.includes(searchTerm)).map((project) => {
       return (
         <>
       <div className='col-md-4 py-3' key={project.id}>
@@ -54,8 +57,8 @@ function HomePage () {
       <h1>LOADING...</h1> : 
         <div className="container col-md-8">  
           <div className="card" onClick={() => setProjectData(project)}>
-          <Search onProjectSearch={onProjectSearch} />
-          <ProjectCollection project={project} />
+          
+          <ProjectCard key={project.id} project={project}  />
           </div>
         </div>
       }    
@@ -63,6 +66,8 @@ function HomePage () {
         </>
       );
       })}
+    </div>
+    )
 }
 export default HomePage;
 
