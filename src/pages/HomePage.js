@@ -48,37 +48,43 @@ function HomePage () {
 
     return (
     <div>
+
     <section className="container ">
-    <div className="row">
-    <div className="col">
-      <h1>Art<span>Gallery</span></h1>
-      <p className="slogan">Find Art by Themes or Styles</p>
-    </div>
-    <div className="col align-bottom">
-      <Search  onChange={handleSearchChange} />
-    </div>
-    </div>
-    </section>
-      
-      {APIData.filter(project => project.title.includes(searchTerm)).map((project) => {
-      return (
-        <>
-      <div className='col-md-4 py-3' key={project.id}>
-      {project.loading ?
-      <h1>LOADING...</h1> : 
-        <div className="container col-md-8">  
-          <div className="card" onClick={() => setProjectData(project)}>
-          
-          <ProjectCard key={project.id} project={project}  />
-          </div>
-        </div>
-      }    
+      <div className="row">
+      <div className="col">
+        <h1>Art<span>Gallery</span></h1>
       </div>
-        </>
-      );
-      })}
-    </div>
-    )
+      <div className="col align-bottom">
+        <Search  onChange={handleSearchChange} />
+      </div>
+      </div>
+    </section>
+
+    <section className="my-5">
+      <div className="container">
+        <div className="row">
+          {APIData.filter(project => project.title.includes(searchTerm)).map((project) => {
+          return (
+            <>
+          <div className='col-md-4 py-3' key={project.id}>
+          {project.loading ?
+          <h1>LOADING...</h1> : 
+            <div className="container col-md-8">  
+              <div className="card" onClick={() => setProjectData(project)}>
+              
+              <ProjectCard key={project.id} project={project}  />
+              </div>
+            </div>
+          }   
+          </div>
+          </>
+          );
+          })}
+        </div>
+      </div>
+    </section>
+  </div>
+  )
 }
 export default HomePage;
 

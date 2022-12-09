@@ -5,10 +5,12 @@ const ProjectCard = ({ project }) => {
 const { title, image } = project
     return (
     <Link to={'/project'}>
-        <div className="card-body">
-        <h5 className="card-title text-center">{title}</h5>
+        <div className="card">
+            <div className="card-body">
+            <h5 className="card-title">{title}</h5>
+            </div>
+            <img className="card-img-bottom mx-auto" src={image} alt="350x350"/>
         </div>
-        <img className="card-img-top mx-auto" src={image} alt="350x350"/>
     </Link>
         )
 }

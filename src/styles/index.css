@@ -22,7 +22,9 @@ h3 {
   font-weight:700;
   margin-bottom:0.8em;
 }
-
+a {
+  text-decoration: none;
+}
 p {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight:400;
@@ -130,11 +132,21 @@ ul.pills li a:hover, ul.pills li a.active {
   -moz-border-radius: 0px;
   border-radius: 0px;
 }
+.card-body {
+  margin-bottom: -0.8em;
+}
 section {
   margin-top: 3em;
 }
-.card-img-top {
-  height:auto;
+.card-img-bottom {
+  width: 350px;
+  height: 260px;
+}
+h5.card-title {
+  color: #202124;
+  margin-left: -0.6em;
+  font-weight: 600;
+  font-size: 1.15rem;
 }
 /* ADMIN ----------------------- */
 ul.pills li a + a {
