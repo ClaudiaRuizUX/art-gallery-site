@@ -154,3 +154,10 @@ section.Branding-Center {
 .Branding-Left {
   padding-bottom: 2rem;
 }
+
+section div.align-bottom {
+  vertical-align: bottom;
+
+  margin-top: 4em;
+  margin-left: 22em;
+}

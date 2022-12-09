@@ -48,7 +48,18 @@ function HomePage () {
 
     return (
     <div>
-      <Search onChange={handleSearchChange} />
+    <section className="container ">
+    <div className="row">
+    <div className="col">
+      <h1>Art<span>Gallery</span></h1>
+      <p className="slogan">Find Art by Themes or Styles</p>
+    </div>
+    <div className="col align-bottom">
+      <Search  onChange={handleSearchChange} />
+    </div>
+    </div>
+    </section>
+      
       {APIData.filter(project => project.title.includes(searchTerm)).map((project) => {
       return (
         <>

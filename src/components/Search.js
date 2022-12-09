@@ -2,10 +2,13 @@ import React from 'react'
 
 const Search = props => {
   return (
-    <div className="ui search">
-      <div className="ui icon input">
-        <input className="prompt" onChange={props.onChange} />
-        <i className="search icon" />
+    <div className="ui search d-flex">
+      <div className="d-flex col-md-8 w-55">
+        <input
+        className="form-control form-control-sm ml-3 "
+        aria-label="Search"
+        placeholder="Search Projects"
+        onChange={props.onChange} />
       </div>
     </div>
   )
