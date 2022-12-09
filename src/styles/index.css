@@ -155,9 +155,12 @@ section.Branding-Center {
   padding-bottom: 2rem;
 }
 
+/* SEARCH ----------------------- */
 section div.align-bottom {
   vertical-align: bottom;
-
   margin-top: 4em;
   margin-left: 22em;
+}
+i.bi-search {
+  margin-right: 0.6em;
 }

@@ -4,9 +4,11 @@ import { useLocation, Link } from "react-router-dom";
 import { Button } from "reactstrap";
 import Form from 'react-bootstrap/Form';
 import { useNavigate} from "react-router";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function ProjectPage() {
     const navigate = useNavigate();
+    const { isAuthenticated } = useAuth0();
 
     const [id, setId] = useState(false);
     const [title, setTitle] = useState("");
@@ -38,11 +40,15 @@ function ProjectPage() {
             </Link>
                 <div className="title-container d-flex justify-content-between">
                     <h3>{title}</h3>
-                    <Link to={`/projects/edit`}>
-                        <Button  color="secondary" onClick={() => setProjectData(id, title, description, image)}>
-                            ✐ Edit Project
-                        </Button>
-                    </Link>
+                    {isAuthenticated && (
+                        <>
+                        <Link to={`/projects/edit`}>
+                            <Button  color="secondary" onClick={() => setProjectData(id, title, description, image)}>
+                                ✐ Edit Project
+                            </Button>
+                        </Link>
+                        </>
+                    )}
                 </div>
                 <p>{description}</p>
                 <img className="card-img-top mx-auto" src={image} alt="350x350"/>
