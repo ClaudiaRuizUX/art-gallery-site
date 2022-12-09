@@ -74,7 +74,13 @@ p.slogan {
 .danger {
   color: #F44336;
 }
-
+.edit-button-group {
+  margin-top:1em;
+  margin-bottom: 4em;
+}
+.edit-button {
+  margin-left: 1.5em;
+}
 
 
 /* NAVBAR ----------------------- */

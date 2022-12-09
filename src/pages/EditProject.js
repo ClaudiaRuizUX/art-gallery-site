@@ -9,6 +9,7 @@ function EditProject () {
     const [id, setId] = useState(false);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [image, setImage] = useState("");
     const [APIData, setAPIData] = useState([]);
 
     useEffect(() => {
@@ -21,6 +22,7 @@ function EditProject () {
       setId(localStorage.getItem("ID"));
       setTitle(localStorage.getItem("TITLE"));
       setDescription(localStorage.getItem("DESCRIPTION"));
+      setImage(localStorage.getItem("IMAGE"));
   }, []);
 
   const postData = () => {
@@ -33,7 +35,8 @@ function EditProject () {
       let { id, title, description } = data;
       localStorage.setItem("ID", id);
       localStorage.setItem("TITLE", title);
-      localStorage.setItem("DESCRIPTION", description)
+      localStorage.setItem("DESCRIPTION", description);
+      localStorage.setItem("IMAGE", image);
   };
 
   const getData = () => {
@@ -77,11 +80,15 @@ function EditProject () {
                 onChange={(e) => setDescription(e.target.value)}
             />
             </Form.Group>
-            <Button type="submit" color="primary" variant="outline-success" 
-            // onClick={() => updateAPIData({id}, {title}, {description})}
-            >
-            Save 
-            </Button> 
+            <img className="card-img-top mx-auto" src={image} alt="350x350"/>
+            <div className="edit-button-group d-flex justify-content-end">
+              <Button className="cancel-button" type="submit" color="secondary" variant="outline-success">
+              Cancel
+              </Button> 
+              <Button className="edit-button" type="submit" color="primary" variant="outline-success">
+              Save 
+              </Button> 
+            </div>
         </Form>
     </div>
     );  
