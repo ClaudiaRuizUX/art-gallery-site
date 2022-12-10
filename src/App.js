@@ -1,17 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Container } from "reactstrap";
-
-import { connect } from "react-redux";
-import { fetchProjects} from "./actions/projectActions";
-
-import Loading from "./components/Loading";
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import ProjectPage from './pages/ProjectPage';
 import EditProject from './pages/EditProject';
-
-import { useAuth0 } from "@auth0/auth0-react";
 
 // styles & fonts
 import 'bootstrap/dist/css/bootstrap.min.css';

@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
 import { Button } from "reactstrap";
-import Form from 'react-bootstrap/Form';
 import { useNavigate} from "react-router";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function ProjectPage() {
-    const navigate = useNavigate();
     const { isAuthenticated } = useAuth0();
 
     const [id, setId] = useState(false);

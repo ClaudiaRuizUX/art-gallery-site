@@ -20,9 +20,7 @@ const ProjectDetail = () =>
     }
     
     useEffect(() =>
-    {
-        getProject()
-    }, [])
+    { getProject()}, [])
     
     return (
         <div className="row">

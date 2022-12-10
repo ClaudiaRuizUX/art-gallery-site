@@ -1,22 +1,12 @@
 import React, { Component, useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import { connect } from "react-redux";
-import { fetchProjects} from "../actions/projectActions";
 import axios from "axios";
-import { useNavigate} from "react-router";
-import { Link } from "react-router-dom";
 import Search from '../components/Search';
-import { Button } from "reactstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProjectCard from '../components/ProjectCard';
 import { slice } from 'lodash'
 
 function HomePage () {
-  const navigate = useNavigate();
   const [id, setId] = useState(false);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
   const [searchTerm, setSearchTermState] = useState("");
 
   const [APIData, setAPIData] = useState([]);
@@ -109,9 +99,6 @@ function HomePage () {
           </button>
         )}
       </div>
-        
-
-
       </div>
     </section>
   </div>
