@@ -8,7 +8,8 @@ import { Link } from "react-router-dom";
 import Search from '../components/Search';
 import { Button } from "reactstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ProjectCard from '../components/ProjectCard'
+import ProjectCard from '../components/ProjectCard';
+import { slice } from 'lodash'
 
 function HomePage () {
   const navigate = useNavigate();
@@ -19,6 +20,18 @@ function HomePage () {
   const [searchTerm, setSearchTermState] = useState("");
 
   const [APIData, setAPIData] = useState([]);
+  const [isCompleted, setIsCompleted] = useState(false)
+  const [index, setIndex] = useState(5)
+  const initialAPIData = slice(APIData, 0, index)
+
+  const loadMore = () => {
+    setIndex(index + 5)
+    if (index >= APIData.length) {
+      setIsCompleted(true)
+    } else {
+      setIsCompleted(false)
+    }
+  }
 
   useEffect(() => {
       axios
@@ -55,7 +68,7 @@ function HomePage () {
         <h1>Art<span>Gallery</span></h1>
       </div>
       <div className="col align-bottom">
-        <Search  onChange={handleSearchChange} />
+        <Search onChange={handleSearchChange} />
       </div>
       </div>
     </section>
@@ -63,7 +76,7 @@ function HomePage () {
     <section className="my-5">
       <div className="container">
         <div className="row">
-          {APIData.filter(project => project.title.includes(searchTerm)).map((project) => {
+          {initialAPIData.filter(project => project.title.includes(searchTerm)).map((project) => {
           return (
             <>
           <div className='col-md-4 py-3' key={project.id}>
@@ -71,7 +84,6 @@ function HomePage () {
           <h1>LOADING...</h1> : 
             <div className="container col-md-8">  
               <div className="card" onClick={() => setProjectData(project)}>
-              
               <ProjectCard key={project.id} project={project}  />
               </div>
             </div>
@@ -81,6 +93,25 @@ function HomePage () {
           );
           })}
         </div>
+
+        <div className="layout-center">
+        {isCompleted ? (
+          <button
+            onClick={loadMore}
+            type="button"
+            className="btn btn-secondary disabled"
+          >
+            That's It
+          </button>
+        ) : (
+          <button onClick={loadMore} type="button" className="btn btn-secondary">
+            Load More +
+          </button>
+        )}
+      </div>
+        
+
+
       </div>
     </section>
   </div>

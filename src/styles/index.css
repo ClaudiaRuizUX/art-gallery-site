@@ -161,6 +161,9 @@ ul.pills li a + a {
 .layout-right {
   text-align: right;
 }
+.layout-center {
+  text-align: center;
+}
 section.Branding-Center {
   text-align:center;
   margin-bottom: 12em;
