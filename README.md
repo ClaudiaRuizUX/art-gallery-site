@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a [React.js](https://xxxx) webpage styled with [Bootstrap](https://react-bootstrap.github.io/) that allows find project, read the project details, update the title and description. 
+This is a React.js webpage styled with [Bootstrap](https://react-bootstrap.github.io/) that allows find project, read the project details, update the title and description. 
 
 ## Getting Started
 To start:

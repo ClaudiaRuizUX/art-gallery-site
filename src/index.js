@@ -1,10 +1,6 @@
 import React from 'react';
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import projectsReducer from "./reducers/projectsReducer.js";
 import reportWebVitals from './reportWebVitals';
 
 import { Auth0Provider } from "@auth0/auth0-react";
@@ -15,21 +11,13 @@ import "./styles/index.css";
 
 
 const config = getConfig();
-const store = createStore(projectsReducer, applyMiddleware(thunk))
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
-// const onRedirectCallback = (appState) => {
-//   history.push(
-//     appState && appState.returnTo ? appState.returnTo : window.location.pathname
-//   );
-// };
 
 const providerConfig = {
   domain: config.domain,
   clientId: config.clientId,
   ...(config.audience ? { audience: config.audience } : null),
   redirectUri: window.location.origin
-  // onRedirectCallback,
 };
 
 
@@ -39,9 +27,9 @@ root.render(
     clientId="h3F82Hr5QRnQdGryaHmvzG5KHB9PofwF"
     redirectUri={window.location.origin}
   >
-    <Provider store={store}>
+
     <App />
-    </Provider>,
+
   </Auth0Provider>
 );
 
