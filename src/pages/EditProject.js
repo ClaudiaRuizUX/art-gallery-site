@@ -24,7 +24,7 @@ function EditProject () {
   }, []);
 
   const postData = () => {
-    axios.get("https://60ff6e102574110017078966.mockapi.io/mockdata");
+    axios.get("https://desolate-depths-34005.herokuapp.com/projects/");
     setTitle("");
     setDescription("");
   };
@@ -45,7 +45,7 @@ function EditProject () {
       });
   };
 
-  const updateAPIData = () => {
+  const updateAPIData = (id) => {
     axios
       .patch(`https://desolate-depths-34005.herokuapp.com/projects/${id}`, {
         title,
@@ -59,7 +59,7 @@ function EditProject () {
     return (
     <div className="container col-md-8">
         <h3>Edit Project</h3>
-        <Form onSubmit={() => updateAPIData(title, description)}>
+        <Form onSubmit={() => updateAPIData(id, title, description)}>
             <Form.Group className="title-container d-flex justify-content-between">
             <Form.Control
                 className="me-2"
