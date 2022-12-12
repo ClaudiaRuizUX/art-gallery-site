@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import ProjectPage from './pages/ProjectPage';
 import EditProject from './pages/EditProject';
+import NewProject from './pages/NewProject';
 
 // styles & fonts
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,6 +24,7 @@ class App extends Component {
               <Route path="/" element={<HomePage />} />
               <Route exact path='/project' element={<ProjectPage />} />
               <Route exact path='projects/edit' element={<EditProject />} />
+              <Route exact path='projects/new' element={<NewProject />} />
             </Routes>
           </Container>
         </div>

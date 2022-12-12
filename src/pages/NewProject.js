@@ -4,7 +4,7 @@ import { Button } from "reactstrap";
 import Form from 'react-bootstrap/Form';
 import { Link, useNavigate } from "react-router-dom";
 
-function EditProject () {
+function NewProject () {
     let navigate = useNavigate(); 
     const [id, setId] = useState(false);
     const [title, setTitle] = useState("");
@@ -29,6 +29,7 @@ function EditProject () {
     axios.get("https://desolate-depths-34005.herokuapp.com/projects/");
     setTitle("");
     setDescription("");
+    setImage("");
   };
 
     const setProjectData = (data) => {
@@ -78,17 +79,15 @@ function EditProject () {
 
     return (
     <div className="container col-md-8">
-        <Link to={"/project"}>
-            <Button className="layout-left" color="tertiary"> « Back </Button>
-        </Link>
-        <h3>Edit Project</h3>
+
+        <h3>New Project</h3>
         <Form >
             <Form.Group className="title-container d-flex justify-content-between">
             <Form.Control
                 className="me-2"
                 aria-label="Text"
                 type="text"
-                defaultValue={title}
+                defaultValue="Enter Title"
                 onChange={(e) => setTitle(e.target.value)}
             />
             </Form.Group>
@@ -97,35 +96,33 @@ function EditProject () {
             <Form.Control
                 as="textarea"
                 rows={4}
-                defaultValue={description}
+                defaultValue="Enter Description"
                 onChange={(e) => setDescription(e.target.value)}
             />
             </Form.Group>
-            <img className="card-img-top mx-auto" src={image} alt="350x350"/>
-    
-            <div className="edit-button-group d-flex justify-content-end">
-              <Link to={"projects/new"}>
-                <Button className="new-button" type="submit"
-                color="secondary" variant="outline-success"> New Project </Button>
-              </Link>
-              
-              <Button className="delete-button" type="submit"
-              color="secondary" variant="outline-success"> Delete </Button>
+           
+            <Form.Group className="image-container d-flex justify-content-between">
+                <Form.Control
+                    className="me-2"
+                    aria-label="Text"
+                    type="text"
+                    defaultValue="Enter Image URL"
+                    onChange={(e) => setImage(e.target.value)}
+                />
+            </Form.Group>
 
-              <Link to={"/project"}>
+              <Link to={"/"}>
                 <Button className="cancel-button" type="submit"
                 color="secondary"variant="outline-success"> Cancel</Button> 
               </Link>
 
               <Link to={"/project"}>
                 <Button className="edit-button" color="primary" variant="outline-success"
-                type="button" onClick={() => setEditedProject(id, title, description, image)}> Save </Button> 
+                type="button" onClick={() => setEditedProject(id, title, description, image)}> Create Project </Button> 
               </Link>
-            </div>
-
         </Form>
     </div>
     );  
   }
-export default EditProject;
+export default NewProject;
 

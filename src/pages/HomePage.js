@@ -3,9 +3,13 @@ import axios from "axios";
 import Search from '../components/Search';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProjectCard from '../components/ProjectCard';
-import { slice } from 'lodash'
+import { slice } from 'lodash';
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Button } from "reactstrap";
 
 function HomePage () {
+  const { isAuthenticated } = useAuth0();
   const [id, setId] = useState(false);
   const [searchTerm, setSearchTermState] = useState("");
 
@@ -54,12 +58,20 @@ function HomePage () {
 
     <section className="container ">
       <div className="row">
-      <div className="col">
-        <h1>Art<span>Gallery</span></h1>
-      </div>
-      <div className="col align-bottom">
-        <Search onChange={handleSearchChange} />
-      </div>
+        <div className="col">
+          <h1>Art<span>Gallery</span></h1>
+        </div>
+        <div className="col align-bottom">
+          <Search onChange={handleSearchChange} />
+        </div>
+        {isAuthenticated && (
+            <>
+            <Link to={"projects/new"}>
+              <Button className="new-button" type="submit"
+              color="secondary" variant="outline-success"> New Project </Button>
+            </Link>
+            </>
+        )}
       </div>
     </section>
 
