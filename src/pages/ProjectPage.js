@@ -29,7 +29,6 @@ function ProjectPage() {
       return (
         <>
         <div className="container">
-        <h1>LOADING...</h1> : 
         <div className="container col-md-8">  
             <div className="row">
             <Link to={"/"}>
