@@ -41,19 +41,13 @@ function ProjectPage() {
                         <Link to={`/projects/edit`}>
                             <Button  color="secondary" onClick={() => setProjectData(id, title, description, image)}>
                                 ✐ Edit Project
-                            </Button>
+                            </Button>                  
                         </Link>
                         </>
                     )}
                 </div>
                 <p>{description}</p>
                 <img className="card-img-top mx-auto" src={image} alt="350x350"/>
-                <ul className="pills">
-                <li><a href="">Cold</a> <a href="">X</a></li>
-                <li><a href="">Cold</a></li>
-                <li><a href="">Gestural</a></li>
-                <Button color="tertiary">+ Add Category</Button>
-                </ul>
             </div>
         </div>
         </div>

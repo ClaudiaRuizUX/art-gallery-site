@@ -46,6 +46,7 @@ function EditProject () {
   };
 
   const updateAPIData = (id) => {
+    console.log("works");
     axios
       .patch(`https://desolate-depths-34005.herokuapp.com/projects/${id}`, {
         title,
@@ -56,10 +57,18 @@ function EditProject () {
       });
   };
 
+  const deleteData = (id) => {
+    axios
+      .delete(`https://desolate-depths-34005.herokuapp.com/projects/${id}`)
+      .then(() => {
+        getData();
+      });
+  };
+
     return (
     <div className="container col-md-8">
         <h3>Edit Project</h3>
-        <Form onSubmit={() => updateAPIData(id, title, description)}>
+        <Form >
             <Form.Group className="title-container d-flex justify-content-between">
             <Form.Control
                 className="me-2"
@@ -80,11 +89,20 @@ function EditProject () {
             </Form.Group>
             <img className="card-img-top mx-auto" src={image} alt="350x350"/>
             <div className="edit-button-group d-flex justify-content-end">
+              <Button className="new-button" type="submit" color="secondary" variant="outline-success">
+              New
+              </Button>
+              <Button className="delete-button" type="submit" color="secondary" variant="outline-success">
+              Delete
+              </Button>
               <Button className="cancel-button" type="submit" color="secondary" variant="outline-success">
               Cancel
               </Button> 
-              <Button className="edit-button" type="submit" color="primary" variant="outline-success">
-              Save 
+
+              <Button className="edit-button" color="primary" variant="outline-success"
+              type="button"
+              onClick={() => updateAPIData(id)}>
+               Save 
               </Button> 
             </div>
         </Form>
