@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { Button } from "reactstrap";
 import Form from 'react-bootstrap/Form';
+import { Link, useNavigate } from "react-router-dom";
 
 function EditProject () {
+    let navigate = useNavigate(); 
     const [id, setId] = useState(false);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -30,7 +32,7 @@ function EditProject () {
   };
 
     const setProjectData = (data) => {
-      let { id, title, description } = data;
+      let { id, title, description, image } = data;
       localStorage.setItem("ID", id);
       localStorage.setItem("TITLE", title);
       localStorage.setItem("DESCRIPTION", description);
@@ -53,9 +55,18 @@ function EditProject () {
         description
       })
       .then(() => {
-        getData();
+        navigate("/project");
       });
   };
+
+  const setEditedProject = (id, title, description, image) => {
+    localStorage.setItem("ID", id);
+    localStorage.setItem("TITLE", title);
+    localStorage.setItem("DESCRIPTION", description);
+    localStorage.setItem("IMAGE", image);
+    updateAPIData(id)
+};
+
 
   const deleteData = (id) => {
     axios
@@ -67,6 +78,9 @@ function EditProject () {
 
     return (
     <div className="container col-md-8">
+        <Link to={"/project"}>
+            <Button className="layout-left" color="tertiary"> « Back </Button>
+        </Link>
         <h3>Edit Project</h3>
         <Form >
             <Form.Group className="title-container d-flex justify-content-between">
@@ -99,15 +113,14 @@ function EditProject () {
               Cancel
               </Button> 
 
+              <Link to={"/project"}>
               <Button className="edit-button" color="primary" variant="outline-success"
-              type="button"
-              onClick={() => updateAPIData(id)}>
-               Save 
-              </Button> 
+                type="button" onClick={() => setEditedProject(id, title, description, image)}> Save </Button> 
+              </Link>
             </div>
         </Form>
     </div>
     );  
   }
-
 export default EditProject;
+
