@@ -10,72 +10,18 @@ function NewProject () {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState("");
-    const [APIData, setAPIData] = useState([]);
-
-    useEffect(() => {
-      axios
-        .get("https://desolate-depths-34005.herokuapp.com/projects/")
-        .then((response) => setAPIData(response.data));
-    }, []);
-
-    useEffect(() => {
-      setId(localStorage.getItem("ID"));
-      setTitle(localStorage.getItem("TITLE"));
-      setDescription(localStorage.getItem("DESCRIPTION"));
-      setImage(localStorage.getItem("IMAGE"));
-  }, []);
-
-  const postData = () => {
-    axios.get("https://desolate-depths-34005.herokuapp.com/projects/");
-    setTitle("");
-    setDescription("");
-    setImage("");
-  };
-
-    const setProjectData = (data) => {
-      let { id, title, description, image } = data;
-      localStorage.setItem("ID", id);
-      localStorage.setItem("TITLE", title);
-      localStorage.setItem("DESCRIPTION", description);
-      localStorage.setItem("IMAGE", image);
-  };
-
-  const getData = () => {
-    axios
-      .get("https://desolate-depths-34005.herokuapp.com/projects/")
-      .then((getData) => {
-        setAPIData(getData.data);
-      });
-  };
-
-  const updateAPIData = (id) => {
-    console.log("works");
-    axios
-      .patch(`https://desolate-depths-34005.herokuapp.com/projects/${id}`, {
+    
+    const postData = () => {
+      axios.post("https://desolate-depths-34005.herokuapp.com/projects/", {
         title,
-        description
-      })
-      .then(() => {
-        navigate("/project");
+        description,
+        image
       });
-  };
 
-  const setEditedProject = (id, title, description, image) => {
-    localStorage.setItem("ID", id);
-    localStorage.setItem("TITLE", title);
-    localStorage.setItem("DESCRIPTION", description);
-    localStorage.setItem("IMAGE", image);
-    updateAPIData(id)
-};
-
-
-  const deleteData = (id) => {
-    axios
-      .delete(`https://desolate-depths-34005.herokuapp.com/projects/${id}`)
-      .then(() => {
-        getData();
-      });
-  };
+      setTitle("");
+      setDescription("");
+    setImage("");
+    };
 
     return (
     <div className="container col-md-8">
@@ -118,7 +64,7 @@ function NewProject () {
 
               <Link to={"/project"}>
                 <Button className="edit-button" color="primary" variant="outline-success"
-                type="button" onClick={() => setEditedProject(id, title, description, image)}> Create Project </Button> 
+                type="button" onClick={postData}> Create Project </Button> 
               </Link>
         </Form>
     </div>

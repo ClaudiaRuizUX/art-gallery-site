@@ -48,7 +48,6 @@ function EditProject () {
   };
 
   const updateAPIData = (id) => {
-    console.log("works");
     axios
       .patch(`https://desolate-depths-34005.herokuapp.com/projects/${id}`, {
         title,
@@ -68,11 +67,10 @@ function EditProject () {
 };
 
 
-  const deleteData = (id) => {
+  const deleteProject = (id) => {
     axios
       .delete(`https://desolate-depths-34005.herokuapp.com/projects/${id}`)
       .then(() => {
-        getData();
       });
   };
 
@@ -108,10 +106,12 @@ function EditProject () {
                 <Button className="new-button" type="submit"
                 color="secondary" variant="outline-success"> New Project </Button>
               </Link>
-              
-              <Button className="delete-button" type="submit"
-              color="secondary" variant="outline-success"> Delete </Button>
 
+              <Link to={"delete"}>
+              <Button className="delete-button" color="secondary" variant="outline-success"
+              type="buttom" onClick={() => deleteProject(id)}> Delete </Button>
+              </Link>
+          
               <Link to={"/project"}>
                 <Button className="cancel-button" type="submit"
                 color="secondary"variant="outline-success"> Cancel</Button> 

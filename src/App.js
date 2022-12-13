@@ -6,10 +6,12 @@ import HomePage from './pages/HomePage';
 import ProjectPage from './pages/ProjectPage';
 import EditProject from './pages/EditProject';
 import NewProject from './pages/NewProject';
+import ConfirmationPage from './pages/ConfirmationPage';
 
 // styles & fonts
 import 'bootstrap/dist/css/bootstrap.min.css';
 import initFontAwesome from "./utils/initFontAwesome";
+import Confirmation from "./pages/ConfirmationPage";
 initFontAwesome();
 
 class App extends Component {
@@ -25,6 +27,7 @@ class App extends Component {
               <Route exact path='/project' element={<ProjectPage />} />
               <Route exact path='projects/edit' element={<EditProject />} />
               <Route exact path='projects/new' element={<NewProject />} />
+              <Route exact path='projects/edit/delete' element={<ConfirmationPage />} />
             </Routes>
           </Container>
         </div>
