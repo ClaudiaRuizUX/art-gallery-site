@@ -53,24 +53,26 @@ function HomePage () {
 
     <section className="container ">
       <div className="row">
-        <div className="col">
+        <div className="col-md-9">
           <h1>Art<span>Gallery</span></h1>
         </div>
-        <div className="col align-bottom">
+        <div className="col-md-3">
           <Search onChange={handleSearchChange} />
         </div>
-        {isAuthenticated && (
-            <>
-            <Link to={"projects/new"}>
-              <Button className="new-button" type="submit"
-              color="secondary" variant="outline-success"> New Project </Button>
-            </Link>
-            </>
+      </div>
+      <div className="row new-button">
+      {isAuthenticated && (
+          <>
+          <Link to={"projects/new"} className="my-4 layout-right ">
+            <Button type="submit"
+            color="primary" variant="outline-success"> New Project </Button>
+          </Link>
+          </>
         )}
       </div>
     </section>
 
-    <section className="my-5">
+    <section className="my-2">
       <div className="container">
         <div className="row">
           {initialAPIData.filter(project => project.title.includes(searchTerm)).map((project) => {
@@ -79,7 +81,7 @@ function HomePage () {
           <div className='col-md-4 py-3' key={project.id}>
           {project.loading ?
           <h1>LOADING...</h1> : 
-            <div className="container col-md-8">  
+            <div className="container">  
               <div className="card" onClick={() => setProjectData(project)}>
               <ProjectCard key={project.id} project={project}  />
               </div>

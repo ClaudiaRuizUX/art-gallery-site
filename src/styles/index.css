@@ -83,7 +83,16 @@ p.slogan {
 .edit-button {
   margin-left: 1.5em;
 }
-
+.new-button {
+  padding-top:2em;
+  margin-bottom:-2em;
+}
+.delete-button {
+  font-size:1em;
+  font-weight:normal;
+  color:#F44336;
+  margin-right: 1.5em;
+}
 
 /* NAVBAR ----------------------- */
 a .navbar-brand {

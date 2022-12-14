@@ -98,13 +98,8 @@ function EditProject () {
             <img className="card-img-top mx-auto" src={image} alt="350x350"/>
     
             <div className="edit-button-group d-flex justify-content-end">
-              <Link to={"projects/new"}>
-                <Button className="new-button" type="submit"
-                color="secondary" variant="outline-success"> New Project </Button>
-              </Link>
-
               <Link to={"delete"}>
-              <Button className="delete-button" color="secondary" variant="outline-success"
+              <Button className="delete-button" color="tertiary" variant="outline-success"
               type="buttom" onClick={() => deleteProject(id)}> Delete </Button>
               </Link>
           
