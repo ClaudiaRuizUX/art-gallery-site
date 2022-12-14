@@ -1,11 +1,13 @@
 import React, { Component, useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import projectsService from "../services/projectsService";
+import { Link, useNavigate } from "react-router-dom";
+import { slice } from "lodash";
+
+import ProjectCard from '../components/ProjectCard';
 import Search from '../components/Search';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ProjectCard from '../components/ProjectCard';
-import { slice } from 'lodash';
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "reactstrap";
 
 function HomePage () {
@@ -26,12 +28,13 @@ function HomePage () {
       setIsCompleted(false)
     }
   }
-
-  useEffect(() => {
-      axios
-        .get("https://desolate-depths-34005.herokuapp.com/projects/")
-        .then((response) => setAPIData(response.data));
-    }, []);
+    useEffect(() => {
+        projectsService
+            .getAll()
+            .then(projects => {
+              setAPIData(projects)
+            })
+    }, [])
 
     const setProjectData = (data) => {
       let { id, title, description, image } = data;
@@ -39,14 +42,6 @@ function HomePage () {
       localStorage.setItem("TITLE", title);
       localStorage.setItem("DESCRIPTION", description);
       localStorage.setItem("IMAGE", image);
-    };
-
-    const getProjectData = () => {
-      axios
-        .get(`https://desolate-depths-34005.herokuapp.com/projects/${id}`)  
-        .then((getProjectData) => {
-          setAPIData(getProjectData.data);
-        });
     };
 
     const handleSearchChange = (event) => {

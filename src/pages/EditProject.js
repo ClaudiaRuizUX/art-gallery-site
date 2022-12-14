@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { Button } from "reactstrap";
-import Form from 'react-bootstrap/Form';
+import projectsService from "../services/projectsService";
 import { Link, useNavigate } from "react-router-dom";
+
+import Form from 'react-bootstrap/Form';
+import { Button } from "reactstrap";
 
 function EditProject () {
     let navigate = useNavigate(); 
@@ -13,10 +15,12 @@ function EditProject () {
     const [APIData, setAPIData] = useState([]);
 
     useEffect(() => {
-      axios
-        .get("https://desolate-depths-34005.herokuapp.com/projects/")
-        .then((response) => setAPIData(response.data));
-    }, []);
+      projectsService
+          .getAll()
+          .then(projects => {
+            setAPIData(projects)
+          })
+  }, [])
 
     useEffect(() => {
       setId(localStorage.getItem("ID"));
@@ -26,36 +30,36 @@ function EditProject () {
   }, []);
 
   const postData = () => {
-    axios.get("https://desolate-depths-34005.herokuapp.com/projects/");
+    projectsService.getAllProjects();
     setTitle("");
     setDescription("");
   };
 
-    const setProjectData = (data) => {
-      let { id, title, description, image } = data;
-      localStorage.setItem("ID", id);
-      localStorage.setItem("TITLE", title);
-      localStorage.setItem("DESCRIPTION", description);
-      localStorage.setItem("IMAGE", image);
-  };
-
-  const getData = () => {
-    axios
-      .get("https://desolate-depths-34005.herokuapp.com/projects/")
-      .then((getData) => {
-        setAPIData(getData.data);
-      });
+  const setProjectData = (data) => {
+    let { id, title, description, image } = data;
+    localStorage.setItem("ID", id);
+    localStorage.setItem("TITLE", title);
+    localStorage.setItem("DESCRIPTION", description);
+    localStorage.setItem("IMAGE", image);
   };
 
   const updateAPIData = (id) => {
     axios
       .patch(`https://desolate-depths-34005.herokuapp.com/projects/${id}`, {
         title,
-        description
+        description,
+        image
       })
       .then(() => {
         navigate("/project");
       });
+  };
+
+  const deleteProject = (id) => {
+    projectsService
+    .remove(id)
+    .then(() => {
+    });
   };
 
   const setEditedProject = (id, title, description, image) => {
@@ -65,14 +69,6 @@ function EditProject () {
     localStorage.setItem("IMAGE", image);
     updateAPIData(id)
 };
-
-
-  const deleteProject = (id) => {
-    axios
-      .delete(`https://desolate-depths-34005.herokuapp.com/projects/${id}`)
-      .then(() => {
-      });
-  };
 
     return (
     <div className="container col-md-8">
