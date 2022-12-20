@@ -16,6 +16,15 @@ To start:
 
 4. Add a new project or remove an existing.
 
+### `npm start` to Run Locally
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+The page will reload when you make changes.\
+
+## Developer
+Claudia Ruiz
+
 
 ## Developer
 Claudia Ruiz
